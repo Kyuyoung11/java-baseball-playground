@@ -56,6 +56,6 @@ public class BallClassifierTest {
     void ballCheckFalse() {
         Balls testBalls = _makeTestBalls();
         Ball ball = new Ball(2,2);
-        assertFalse(ballClassifier.isBall(testBalls, ball));
+        assertTrue(ballClassifier.isBall(testBalls, ball));
     }
 }

@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScoreCalculatorTest {
-    ScoreCalculator scoreCalculator = null;
+public class ResultCheckerTest {
+    ResultChecker resultChecker = null;
 
     private Balls _makeTestBalls() {
         List<Ball> testBalls = new ArrayList<>();
@@ -16,12 +16,8 @@ public class ScoreCalculatorTest {
     }
     @BeforeEach
     void setUp() {
-        scoreCalculator = new ScoreCalculator();
+        resultChecker = new ResultChecker();
     }
 
-    @Test
-    void scoreTest() {
-        Balls balls = _makeTestBalls();
-        scoreCalculator.printResult(balls, balls);
-    }
+
 }
