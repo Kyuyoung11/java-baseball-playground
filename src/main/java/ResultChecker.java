@@ -1,18 +1,20 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class ResultChecker {
 
     public boolean compareAnswer(Balls answerBalls, Balls tryBalls) {
+        Map<BallStatus, Integer> counter = new HashMap<>();
 
         BallClassifier ballClassifier = new BallClassifier();
-        long ballCnt = tryBalls.getBalls().stream()
-                 .filter(tryBall -> ballClassifier.isBall(answerBalls, tryBall))
-                 .count();
-        long strikeCnt = tryBalls.getBalls().stream()
-                .filter(tryBall -> ballClassifier.isBall(answerBalls, tryBall))
-                .count();
-
-        return strikeCnt == 3;
+        for (Ball ball : tryBalls.getBalls()) {
+            BallStatus ballStatus = ballClassifier.classifyBallStatus(answerBalls, ball);
+            counter.put(ballStatus, counter.get(ballStatus)+1);
+        }
 
 
+
+        return counter.get(BallStatus.STRIKE) == 3;
 
     }
 }
