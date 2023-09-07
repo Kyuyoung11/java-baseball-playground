@@ -25,8 +25,8 @@ public class BallsTest {
     @Test
     void duplicateTest() {
         balls = _makeTestBalls();
-        assertTrue(balls.isDuplicateBall(2));
-        assertFalse(balls.isDuplicateBall(1));
+        assertTrue(balls.isBall(2));
+        assertFalse(balls.isBall(1));
     }
 
     @Test
