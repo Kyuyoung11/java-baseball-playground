@@ -32,13 +32,14 @@ ex) git checkout -b apply-feedback
 1. 서로 중복되지않는 Balls 생성 - BallsGenerator#makeRanodmBalls
 2. 사용자 숫자 입력 받기 - InputView#getNumberInput
 3. 정답과 비교 - ResultChecker#compareAnswer
-    3-1. 위치 O, 숫자포함 O -> 스트라이크 - BallClassifier#isStrike
-    3-2. 위치 X, 숫자포함 O -> 볼 - BallClassifier#isBall
-    3-3. 위치 X, 숫자포함 X -> 낫싱
-4. 결과 출력 - ResultPrinter#printResult
-5. 3 strike인지 확인 -> 종료 or 2번부터 다시 loop - ResultChecker#isGameEnd
-6. 재시작 판단 
-    5-1. 사용자 입력 받기 - InputView#getGameRestartInput
-    5-2. "1" -> 게임 재시작
-    5-3. "2" -> 종료
+    3-1. 볼 비교 후 볼상태 가져옴 -ResultChecker#getEachBallStatus
+        3-1-1. 위치 O, 숫자포함 O -> 스트라이크 - Balls#isStrike
+        3-1-2. 위치 X, 숫자포함 O -> 볼 - Balls#isBall
+        3-1-3. 위치 X, 숫자포함 X -> 낫싱
+    3-2. 결과 출력 - ResultChecker#printResult
+    3-3. 정답인지 체크 - ResultChecker#isAnswer
+4. 재시작 판단 Main#checkRestartGame
+    4-1. 사용자 입력 받기 - InputView#getGameEndNum
+    4-2. "1" -> 게임 재시작
+    4-3. "2" -> 종료
 ```
