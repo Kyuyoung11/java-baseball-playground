@@ -4,36 +4,60 @@ import java.util.stream.Collectors;
 public class ResultChecker {
 
     public boolean compareAnswer(Balls answerBalls, Balls tryBalls) {
-        List<BallStatus> ballStatusList = countBalls(answerBalls, tryBalls);
+        //1. 볼 비교 후 볼상태 가져옴
+        List<BallStatus> ballStatusList = getEachBallStatus(answerBalls, tryBalls);
 
+        //2. 결과 출력
         printResult(ballStatusList);
 
+        //3. 정답인지 체크
         return isAnswer(ballStatusList);
 
     }
 
-    private void printResult(List<BallStatus> ballStatusList) {
-        if (Collections.frequency(ballStatusList, BallStatus.NOTHING) == 3) {
-            System.out.println("낫싱");
-            return;
-        }
-
-        if (Collections.frequency(ballStatusList, BallStatus.BALL) > 0) {
-            System.out.print(Collections.frequency(ballStatusList, BallStatus.BALL) + "볼 ");
-        }
-        if (Collections.frequency(ballStatusList, BallStatus.STRIKE) > 0) {
-            System.out.print(Collections.frequency(ballStatusList, BallStatus.STRIKE) + "스트라이크");
-        }
-        System.out.println();
-    }
-
-    private boolean isAnswer(List<BallStatus> ballStatusList) {
-        return Collections.frequency(ballStatusList, BallStatus.STRIKE) == 3;
-    }
-
-    public List<BallStatus> countBalls(Balls answerBalls, Balls tryBalls) {
+    /**
+     * 볼 비교 후 볼상태 가져옴
+     * @param answerBalls
+     * @param tryBalls
+     * @return
+     */
+    public List<BallStatus> getEachBallStatus(Balls answerBalls, Balls tryBalls) {
         return tryBalls.getBalls().stream()
                 .map(answerBalls::getBallStatus)
                 .collect(Collectors.toList());
     }
+
+    /**
+     * 결과 출력
+     * @param ballStatusList
+     */
+    public void printResult(List<BallStatus> ballStatusList) {
+        int nothingCnt = Collections.frequency(ballStatusList, BallStatus.NOTHING);
+        if (nothingCnt == 3) {
+            System.out.println("낫싱");
+            return;
+        }
+
+        int ballCnt = Collections.frequency(ballStatusList, BallStatus.BALL);
+        if (ballCnt > 0) {
+            System.out.print(ballCnt + "볼 ");
+        }
+
+        int strikeCnt = Collections.frequency(ballStatusList, BallStatus.STRIKE);
+        if (strikeCnt > 0) {
+            System.out.print(strikeCnt + "스트라이크");
+        }
+        System.out.println();
+    }
+
+    /**
+     * 정답인지 체크
+     * @param ballStatusList
+     * @return
+     */
+    public boolean isAnswer(List<BallStatus> ballStatusList) {
+        return Collections.frequency(ballStatusList, BallStatus.STRIKE) == 3;
+    }
+
+
 }

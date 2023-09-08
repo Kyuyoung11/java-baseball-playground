@@ -2,7 +2,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ResultCheckerTest {
     ResultChecker resultChecker = null;
@@ -17,6 +20,31 @@ public class ResultCheckerTest {
     @BeforeEach
     void setUp() {
         resultChecker = new ResultChecker();
+    }
+
+    @Test
+    void status3Strike() {
+        Balls testBalls = _makeTestBalls();
+        List<BallStatus> ballStatuses = resultChecker.getEachBallStatus(testBalls,testBalls);
+        assertEquals(Collections.frequency(ballStatuses, BallStatus.STRIKE), 3);
+    }
+
+    @Test
+    void isAnswerTestFalse() {
+        List<BallStatus> ballStatuses = new ArrayList<>();
+        ballStatuses.add(BallStatus.BALL);
+        ballStatuses.add(BallStatus.STRIKE);
+        ballStatuses.add(BallStatus.NOTHING);
+        assertFalse(resultChecker.isAnswer(ballStatuses));
+    }
+
+    @Test
+    void isAnswerTestTrue() {
+        List<BallStatus> ballStatuses = new ArrayList<>();
+        ballStatuses.add(BallStatus.STRIKE);
+        ballStatuses.add(BallStatus.STRIKE);
+        ballStatuses.add(BallStatus.STRIKE);
+        assertTrue(resultChecker.isAnswer(ballStatuses));
     }
 
 

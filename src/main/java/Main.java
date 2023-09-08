@@ -4,10 +4,10 @@ public class Main {
     private static ResultChecker resultChecker = new ResultChecker();
     private static final int SIZE = 3;
     public static void main(String[] args) {
-        gameStart();
+        startGame();
     }
 
-    public static void gameStart() {
+    public static void startGame() {
         //1.난수생성
         Balls randomBalls = ballsGenerator.makeRandomBalls(SIZE);
 
@@ -20,9 +20,14 @@ public class Main {
 
 
         //4. 재시작
+        checkRestartGame();
+    }
+
+    private static void checkRestartGame() {
         String gameEnd = inputView.getGameEndNum();
+
         if ("1".equals(gameEnd))
-            gameStart();
+            startGame();
         else if ("2".equals(gameEnd))
             return;
     }
