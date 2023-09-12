@@ -17,9 +17,6 @@ public class ResultChecker {
 
     /**
      * 볼 비교 후 볼상태 가져옴
-     * @param answerBalls
-     * @param tryBalls
-     * @return
      */
     public List<BallStatus> getEachBallStatus(Balls answerBalls, Balls tryBalls) {
         return tryBalls.getBalls().stream()
@@ -29,7 +26,6 @@ public class ResultChecker {
 
     /**
      * 결과 출력
-     * @param ballStatusList
      */
     public void printResult(List<BallStatus> ballStatusList) {
         int nothingCnt = Collections.frequency(ballStatusList, BallStatus.NOTHING);
@@ -52,8 +48,6 @@ public class ResultChecker {
 
     /**
      * 정답인지 체크
-     * @param ballStatusList
-     * @return
      */
     public boolean isAnswer(List<BallStatus> ballStatusList) {
         return Collections.frequency(ballStatusList, BallStatus.STRIKE) == 3;
