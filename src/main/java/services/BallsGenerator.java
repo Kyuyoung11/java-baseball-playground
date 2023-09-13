@@ -1,3 +1,7 @@
+package services;
+
+import dto.Balls;
+
 import java.util.Random;
 
 public class BallsGenerator {
@@ -13,8 +17,8 @@ public class BallsGenerator {
     public Balls convertFromStringToBalls(String numString) {
         String[] nums = numString.split("");
         Balls balls = new Balls();
-        for (int i=0; i<nums.length; i++) {
-            balls.addBall(Integer.parseInt(nums[i]));
+        for (String num : nums) {
+            balls.addBall(Integer.parseInt(num));
         }
         return balls;
     }

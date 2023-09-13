@@ -1,3 +1,8 @@
+import services.BallsGenerator;
+import dto.Balls;
+import utils.InputView;
+import utils.ResultChecker;
+
 public class Main {
     private static InputView inputView = new InputView();
     private static BallsGenerator ballsGenerator = new BallsGenerator();

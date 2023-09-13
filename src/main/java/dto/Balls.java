@@ -1,8 +1,10 @@
+package dto;
+
+import enums.BallStatus;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Getter
 public class Balls {
