@@ -18,14 +18,14 @@ public class Balls {
         this.balls = balls;
     }
 
-    public void addBall(Integer ballNumber) {
-        if(!isBall(ballNumber)) {
+    public void addUniqueBall(Integer ballNumber) {
+        if(!isUniqueBall(ballNumber)) {
             Ball newBall = new Ball(this.balls.size()+1, ballNumber);
             this.balls.add(newBall);
         }
     }
 
-    public boolean isBall(Integer ballNumber) {
+    public boolean isUniqueBall(Integer ballNumber) {
         return this.balls.stream()
                 .anyMatch(ball -> ball.getNumber() == ballNumber);
     }
@@ -38,10 +38,14 @@ public class Balls {
         if (isStrike(ball)) {
             return BallStatus.STRIKE;
         }
-        if (isBall(ball.getNumber())) {
+        if (isUniqueBall(ball.getNumber())) {
             return BallStatus.BALL;
         }
         return BallStatus.NOTHING;
 
+    }
+
+    public int getSize() {
+        return this.balls.size();
     }
 }

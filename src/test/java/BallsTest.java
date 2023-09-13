@@ -27,24 +27,24 @@ public class BallsTest {
     @Test
     void duplicateTest() {
         balls = _makeTestBalls();
-        assertTrue(balls.isBall(2));
-        assertFalse(balls.isBall(1));
+        assertTrue(balls.isUniqueBall(2));
+        assertFalse(balls.isUniqueBall(1));
     }
 
     @Test
     void duplicateBallsTest() {
-        balls.addBall(2);
-        balls.addBall(2);
-        balls.addBall(2);
+        balls.addUniqueBall(2);
+        balls.addUniqueBall(2);
+        balls.addUniqueBall(2);
 
         assertEquals(balls.getBalls().size(),1);
     }
 
     @Test
     void uniqueBallsTest() {
-        balls.addBall(1);
-        balls.addBall(2);
-        balls.addBall(3);
+        balls.addUniqueBall(1);
+        balls.addUniqueBall(2);
+        balls.addUniqueBall(3);
 
         assertEquals(balls.getBalls().size(),3);
     }

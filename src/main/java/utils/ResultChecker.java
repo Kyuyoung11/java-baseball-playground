@@ -6,9 +6,9 @@ import enums.BallStatus;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ResultChecker {
+public final class ResultChecker {
 
-    public boolean compareAnswer(Balls answerBalls, Balls tryBalls) {
+    public static boolean compareAnswer(Balls answerBalls, Balls tryBalls) {
         //1. 볼 비교 후 볼상태 가져옴
         List<BallStatus> ballStatusList = getEachBallStatus(answerBalls, tryBalls);
 
@@ -23,7 +23,7 @@ public class ResultChecker {
     /**
      * 볼 비교 후 볼상태 가져옴
      */
-    public List<BallStatus> getEachBallStatus(Balls answerBalls, Balls tryBalls) {
+    public static List<BallStatus> getEachBallStatus(Balls answerBalls, Balls tryBalls) {
         return tryBalls.getBalls().stream()
                 .map(answerBalls::getBallStatus)
                 .collect(Collectors.toList());
@@ -32,7 +32,7 @@ public class ResultChecker {
     /**
      * 결과 출력
      */
-    public void printResult(List<BallStatus> ballStatusList) {
+    public static void printResult(List<BallStatus> ballStatusList) {
         int nothingCnt = Collections.frequency(ballStatusList, BallStatus.NOTHING);
         if (nothingCnt == 3) {
             System.out.println("낫싱");
@@ -54,7 +54,7 @@ public class ResultChecker {
     /**
      * 정답인지 체크
      */
-    public boolean isAnswer(List<BallStatus> ballStatusList) {
+    public static boolean isAnswer(List<BallStatus> ballStatusList) {
         return Collections.frequency(ballStatusList, BallStatus.STRIKE) == 3;
     }
 
