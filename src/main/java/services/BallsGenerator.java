@@ -1,3 +1,7 @@
+package services;
+
+import dto.Balls;
+
 import java.util.Random;
 
 public class BallsGenerator {
