@@ -1,3 +1,4 @@
+import enums.GameEndStatus;
 import services.BallsCreator;
 import dto.Balls;
 import utils.InputView;
@@ -29,11 +30,18 @@ public class Main {
 
 
     private static void _checkRestartGame() {
-        String gameEnd = InputView.getGameEndNum();
+        String gameEnd = "";
+        try {
+            gameEnd = InputView.getGameEndNum();
+            ValidationUtils.validateGameEnd(gameEnd);
+        } catch(Exception e) {
+            System.out.println("오류 메시지 : " + e);
+        }
 
-        if ("1".equals(gameEnd))
-            startGame();
-        else if ("2".equals(gameEnd))
+        if (GameEndStatus.isGameEnd(gameEnd))
             return;
+
+        if (GameEndStatus.RESTART.getValue().equals(gameEnd))
+            startGame();
     }
 }
