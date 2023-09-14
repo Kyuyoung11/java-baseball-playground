@@ -1,17 +1,17 @@
-import services.BallsGenerator;
+import services.BallsCreator;
 import dto.Balls;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BallsGeneratorTest {
+public class BallsCreatorTest {
 
-    private BallsGenerator ballsGenerator;
+    private BallsCreator ballsGenerator;
 
     @BeforeEach
     void setUp() {
-        ballsGenerator = new BallsGenerator();
+        ballsGenerator = new BallsCreator();
     }
 
     @Test
